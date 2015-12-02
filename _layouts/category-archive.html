@@ -1,0 +1,9 @@
+---
+layout: article
+---
+
+{% for category in site.categories %}
+  <li><a href="{{'category/' | append: category[0] | replace: " ", "-" | prepend: site.baseurl}}">{{ category[0] }}</a>
+    &nbsp;{{category[1] | size}}
+  </li>
+{% endfor %}

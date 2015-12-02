@@ -1,0 +1,74 @@
+---
+layout: default
+title: archive
+---
+<h1>时间归档</h1>
+
+<!--
+这里是建了两个数组: yarr, marr; 分别代表每年每月的文章数，有一点小机灵的是 marr 不分年份，只要判断出与上月不同就存储一个值，以后每调用一次就加1很是方便灵活
+-->
+{% assign yPostSize = 0 %}
+{% assign mPostSize = 0 %}
+{% for post in site.posts %}
+    {% assign cyear = post.date | date: "%Y" %}
+    {% assign pyear = post.previous.date | date: "%Y" %}
+    {% assign yPostSize = yPostSize | plus: 1 %}
+    {% assign cmonth = post.date | date: "%Y%m" %}
+    {% assign pmonth = post.previous.date | date: "%Y%m" %}
+    {% assign mPostSize = mPostSize | plus: 1 %}
+
+    {% if cyear != pyear %}
+        {% capture ystr %}{% if ystr %}{{ystr}}~{% endif %}{{yPostSize}}{% endcapture %}
+        {% assign yPostSize = 0 %}
+    {% endif %}
+
+    {% if cmonth != pmonth %}
+        {% capture mstr %}{% if mstr %}{{mstr}}~{% endif %}{{mPostSize}}{% endcapture %}
+        {% assign mPostSize = 0 %}
+    {% endif %}
+{% endfor %}
+
+{% assign yarr = ystr | split: "~" %}
+{% assign marr = mstr | split: "~" %}
+
+
+
+
+
+<!--
+这段代码不是很简洁但思路相对比较清晰，对输出内容的组织也更灵活，这是抄自stackoverflow的代码
+-->
+{% for post in site.posts  %}
+    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
+    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+    {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
+
+    {% if forloop.first %}
+    <h2 id="{{ this_year }}-ref">{{this_year}} {{yarr[0]}}</h2>
+    <h3 id="{{ this_year }}-{{ this_month }}-ref">{{ this_month }} {{marr[0]}}</h3>
+    <ul>
+    {% endif %}
+
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+
+    {% if forloop.last %}
+    </ul>
+    {% else %}
+        {% if this_year != next_year %}
+            {% assign mindex = mindex | plus: 1 %}
+            </ul>
+            {% assign yindex = yindex | plus: 1 %}
+            <h2 id="{{ next_year }}-ref">{{next_year}} {{yarr[yindex]}}</h2>
+            <h3 id="{{ next_year }}-{{ next_month }}-ref">{{ next_month }} {{marr[mindex]}}</h3>
+            <ul>
+        {% else %}    
+            {% if this_month != next_month %}
+            {% assign mindex = mindex | plus: 1 %}
+            </ul>
+            <h3 id="{{ this_year }}-{{ next_month }}-ref">{{ next_month }} {{marr[mindex]}}</h3>
+            <ul>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endfor %}

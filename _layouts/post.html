@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% assign post = page %}
+      
+    {% include metaclass.html %}
+
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+</article>
+
+{% if {{page.next}} %}
+	<p id="prev-post"><a href="{{page.next.url}}">&laquo;{{page.next.title}}</a></p>
+{% endif %}
+{% if {{page.previous}} %}
+	<p id="last-post"><a href="{{page.previous.url}}">{{page.previous.title}}&raquo;</a></p>
+{% endif %}

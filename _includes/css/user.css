@@ -1,0 +1,100 @@
+#toggleTag, #toggleCat {
+	display: none;
+}
+
+
+
+.btn {
+    background-color: #22c3aa;
+    border-radius: 1.2em;
+    color: #efefef;
+    display: inline-block;
+    font-size: 0.9rem;
+    margin: 0 0.5em 0.5em; 
+    padding: 0.4em 1em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.btn:hover {
+	background-color: #d0648a;
+	cursor: pointer;
+    color: #efefef;
+    text-decoration: none;
+}
+
+.center {
+	text-align: center;
+}
+
+#toggleTag, #toggleCat {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#toggleTag li, #toggleCat li {
+    display: inline-block;
+    margin: 0.4em 0.3em;
+}
+
+#toggleTag li a, #toggleCat a {
+    text-decoration: none;
+    border-radius: 0.8em;
+    padding: 0.2em 0.3em;
+    background-color: #55AA7F;
+    color: #efefef; 
+}
+
+#toggleTag li a span, #toggleCat li a span {
+   font-size: 0.8em;
+   vertical-align: text-top;
+}
+
+a.metaclass {
+   background-color: #71D17C; 
+   color: #fff;
+   text-decoration: none;
+   padding: 0 0.3em;
+}
+a.metaclass:hover {
+    background-color: #B79;
+}
+
+
+#post-pagination {
+    text-align: center;
+}
+a.previous, a.page-numbers, a.next{
+    display: inline-block;
+    text-align: center;
+    background-color: #53AF4C;
+    color: #fff;
+}
+a.previous, a.next{
+    width: 50px;
+}
+a.page-numbers {
+    width: 25px;
+}
+
+.previous, .page-numbers, .next {
+    display: inline-block;
+    text-align: center;
+    background: #999;
+    color: #fff;
+}
+.previous, .next{
+    width: 50px;
+}
+.page-numbers {
+    width: 25px;
+}
+
+#prev-post {
+    float: left;
+}
+#last-post {
+    float: right;
+}

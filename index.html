@@ -1,0 +1,83 @@
+---
+layout: default
+---
+<div class="center">
+<a onclick="toggleTag(this)" class="btn" >标签</a>
+<a onclick="toggleCat(this)" class="btn" >分类</a>
+</div>
+
+<div id="toggleTag">
+{% for tag in site.tags %}
+  <li><a href="{{'archivebyTag.html/#' | append: tag[0] | prepend: site.baseurl}}">{{ tag[0] }}<span>{{tag[1] | size}}</span></a>
+  </li>
+{% endfor %}
+</div>
+
+<div id="toggleCat">
+{% for category in site.categories %}
+  <li><a href="{{'archivebyCategory.html/#' | append: category[0] | prepend: site.baseurl}}">{{ category[0] }}<span>{{category[1] | size}}</span></a>
+  </li>
+{% endfor %}
+</div>
+
+<div class="home">
+
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+<!--
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <p class="author">
+    <span class="date">{{ post.date | date_to_string }}</span>
+    {% for tag in post.tags %}
+      <a href="{{'archivebyTag.html/#' | append: tag | prepend: site.baseurl}}">{{ tag }}</a>
+    {% endfor %}
+  </p>
+  <div class="content">
+
+    {% if post.categories contains "transfer" %}
+      {{ post.excerpt }}
+    {% else %}
+      {{ post.content }}
+    {% endif %}
+  </div>
+-->
+{% include looppost.html %}
+{% endfor %}
+
+
+{% include paginate.html pageurl="/page/page" %}
+
+
+</div>
+
+<script>
+  function toggleTag(obj) { 
+    var tagElem = document.getElementById('toggleTag');
+    var catElem = document.getElementById('toggleCat');
+    if(tagElem.style.display == '') {
+      tagElem.style.display = 'block';
+      obj.style['background-color'] = '#d0648a';
+      catElem.style.display = '';
+      obj.nextElementSibling.style['background-color'] = '#22c3aa';
+    } else {
+      tagElem.style.display = '';
+      obj.style['background-color'] = '#22c3aa';
+    }
+  }
+
+  function toggleCat(obj) { 
+    var tagElem = document.getElementById('toggleTag');
+    var catElem = document.getElementById('toggleCat');
+    if(catElem.style.display == '') {
+      catElem.style.display = 'block';
+      obj.style['background-color'] = '#d0648a';
+      tagElem.style.display = '';
+      obj.previousElementSibling.style['background-color'] = '#22c3aa';
+    } else {
+      catElem.style.display = '';
+      obj.style['background-color'] = '#22c3aa';
+    }
+  }
+</script>
+
+

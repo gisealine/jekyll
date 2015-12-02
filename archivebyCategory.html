@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<h1>分类归档</h1>
+
+
+{% for cat in site.categories %}
+  {% assign ccat = cat[0] %}
+  <h2 id="{{cat[0]}}">{{ cat[0] }} {{ site.categories[ccat] | size }}</h2>
+  <ul>
+    {% for post in cat[1] %}
+    <li>
+      <a href="{{post.url}}">{{post.title}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+{% for post in site.posts %}
+  {% unless post.category %}
+    {% assign count = count | plus: 1 %}
+    {% capture str %}
+      {{str}}<li><a href="{{post.url}}">{{post.title}}</a></li>
+    {% endcapture %}
+  {% endunless %}
+{% endfor %}
+    <!--{% if count == 1 %}<h2>末分类 {{count}}</h2>{% endif %}-->
+<h2>末分类 {{count}}</h2>
+<ul>{{str}}</ul>
