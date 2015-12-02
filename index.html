@@ -8,14 +8,14 @@ layout: default
 
 <div id="toggleTag">
 {% for tag in site.tags %}
-  <li><a href="{{'archivebyTag.html/#' | append: tag[0] | prepend: site.baseurl}}">{{ tag[0] }}<span>{{tag[1] | size}}</span></a>
+  <li><a href="{{'archivebyTag.html#' | append: tag[0] | prepend: site.baseurl}}">{{ tag[0] }}<span>{{tag[1] | size}}</span></a>
   </li>
 {% endfor %}
 </div>
 
 <div id="toggleCat">
 {% for category in site.categories %}
-  <li><a href="{{'archivebyCategory.html/#' | append: category[0] | prepend: site.baseurl}}">{{ category[0] }}<span>{{category[1] | size}}</span></a>
+  <li><a href="{{'archivebyCategory.html#' | append: category[0] | prepend: site.baseurl}}">{{ category[0] }}<span>{{category[1] | size}}</span></a>
   </li>
 {% endfor %}
 </div>
