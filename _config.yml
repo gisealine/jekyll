@@ -31,7 +31,8 @@ defaults:
   - scope:
       path: ""
     values:
-      author: Bentley
+      author: "Bentley"
+      layout: "post"
 
 gems: [jekyll-gist, jekyll-paginate]
 

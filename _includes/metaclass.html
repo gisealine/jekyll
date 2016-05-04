@@ -3,11 +3,11 @@
 	<span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
 	<span>分类:</span>
 	{% for cat in post.categories %}
-	<a href="{{'archivebyCategory.html/#' | append: cat | prepend: site.baseurl }}" class="metaclass">{{ cat }}</a>
+	<a href="{{'archivebyCategory.html#' | append: cat | prepend: site.baseurl }}" class="metaclass">{{ cat }}</a>
 	{% endfor %}
 	<span>标签:</span>
 	{% for tag in post.tags %}
-	<a href="{{'archivebyTag.html/#' | append: tag | prepend: site.baseurl }}" class="metaclass">{{ tag }}</a>
+	<a href="{{'archivebyTag.html#' | append: tag | prepend: site.baseurl }}" class="metaclass">{{ tag }}</a>
 	{% endfor %}
 
 </p>

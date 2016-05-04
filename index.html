@@ -24,24 +24,9 @@ layout: default
 
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
-<!--
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <p class="author">
-    <span class="date">{{ post.date | date_to_string }}</span>
-    {% for tag in post.tags %}
-      <a href="{{'archivebyTag.html/#' | append: tag | prepend: site.baseurl}}">{{ tag }}</a>
-    {% endfor %}
-  </p>
-  <div class="content">
 
-    {% if post.categories contains "transfer" %}
-      {{ post.excerpt }}
-    {% else %}
-      {{ post.content }}
-    {% endif %}
-  </div>
--->
 {% include looppost.html %}
+
 {% endfor %}
 
 
@@ -51,7 +36,7 @@ layout: default
 </div>
 
 <script>
-  function toggleTag(obj) { 
+  function toggleTag(obj) {
     var tagElem = document.getElementById('toggleTag');
     var catElem = document.getElementById('toggleCat');
     if(tagElem.style.display == '') {
@@ -65,7 +50,7 @@ layout: default
     }
   }
 
-  function toggleCat(obj) { 
+  function toggleCat(obj) {
     var tagElem = document.getElementById('toggleTag');
     var catElem = document.getElementById('toggleCat');
     if(catElem.style.display == '') {
